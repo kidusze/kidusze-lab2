@@ -11,7 +11,7 @@ public class DotChaser {
    *
    * A STATIC CLASS? OH NO! GET IT OUT OF HERE!
    */
-  public class Thing {
+  public static class Thing {
     // dir: 0=North, 1=East, 2=South, 3=West.
     // timeSinceLast: this is only important for "TypeB" Things.
     public int  row, col, dir, timeSinceLast;
@@ -28,43 +28,6 @@ public class DotChaser {
   public static class Node {
     public Thing data;
     public Node  next;
-  }
-
-  // EEEEEK! STATIC METHODS!!! PLEASE FIND THEM A BETTER HOME.
-  public static void rightTurn(Thing t) {
-    t.dir = (t.dir + 1) % 4;
-  }
-
-  public static void leftTurn(Thing t) {
-    t.dir = (t.dir + 3) % 4;
-  }
-
-  public static void maybeTurn(Thing t) {
-    int i = rand.nextInt(3);
-
-    if (t.isTypeB) {
-      t.timeSinceLast++;
-
-      if (t.timeSinceLast == 10) {
-        t.timeSinceLast = 0;
-
-        if (i == 1) {
-          rightTurn(t);
-        }
-
-        if (i == 2) {
-          leftTurn(t);
-        }
-      }
-    } else   {
-      if (i == 1) {
-        rightTurn(t);
-      }
-
-      if (i == 2) {
-        leftTurn(t);
-      }
-    }
   }
 
   public static void step(Thing t) {
